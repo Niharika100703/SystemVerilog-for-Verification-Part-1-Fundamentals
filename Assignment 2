@@ -1,0 +1,22 @@
+Assume `timescale 1ps/1ps. Generate a 25 MHz square wave waveform for the Signal clk.
+
+
+`timescale 1ns/1ps 
+
+module tb;
+  
+  reg clk25 = 0;
+  
+  always clk25 = ~ clk25;
+  
+  initial begin
+    #100;
+    $finish();
+  end
+  
+  initial begin
+    $dumpfile("dump.vcd");
+    $dumpvars;
+  end
+  
+endmodule
