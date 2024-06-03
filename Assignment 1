@@ -17,7 +17,7 @@ module tb;
     rst = 1'b1;
   end
   
-  // Clock generation
+  // Clock generation  - without clk generation, we cant change reset
   initial begin
     forever #5 clk = ~clk; // Toggle clock every 5 ns for a 10 ns period (100 MHz clock)
   end
