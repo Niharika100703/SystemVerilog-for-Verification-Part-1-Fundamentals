@@ -4,27 +4,30 @@ User must keep resetn in an active low state for 60 nSec at the start of the sim
 
 
 
-`timescale 1ns/1ps 
+`timescale 1ns/1ps
 
 module tb;
   reg rst;
   reg clk;
   
- initial begin
-   rst = 1'b0;
-   clk = 1'b0;
-   
-   #60;
-   rst = 1'b1;
-   
- end
-  
   initial begin
-    
-    $dumpfile("dump.vcd");
-    $dumpvars;
-    
+    rst = 1'b0;
+    clk = 1'b0;
+    #60;
+    rst = 1'b1;
   end
   
+  // Clock generation
+  initial begin
+    forever #5 clk = ~clk; // Toggle clock every 5 ns for a 10 ns period (100 MHz clock)
+  end
+
+  initial begin
+    $dumpfile("dump.vcd");
+    $dumpvars;
+  end
+  
+endmodule
+
   
 endmodule
